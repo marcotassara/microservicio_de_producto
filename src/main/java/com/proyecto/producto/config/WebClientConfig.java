@@ -9,7 +9,7 @@ public class WebClientConfig {
     
     @Bean
     public WebClient webClientCategorias(WebClient.Builder builder) {
-        return builder.baseUrl("http://localhost:8081/api/v1/categorias") 
+        return builder.baseUrl("http://localhost:8081/api/v1/categorias") // URL del microservicio de categorías
                       .build();
     }
 }

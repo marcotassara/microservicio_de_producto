@@ -10,6 +10,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_seq")
     @SequenceGenerator(name = "producto_seq", sequenceName = "PRODUCTO_SEQ", allocationSize = 1)
+    @Column(name = "IDPRODUCTO", length = 50)
     private Long id;
     
     @Column(name = "NOMBRE", nullable = false, length = 100)
@@ -31,6 +32,6 @@ public class Producto {
     private String imagenUrl;
 
     @Column(name = "IDCATEGORIA", length = 50)
-    private Long idCategoria;
+    private Long categoriaId;
     
 }
