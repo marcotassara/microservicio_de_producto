@@ -21,6 +21,18 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
+    /**
+     * Endpoint para obtener una lista de productos por sus IDs.
+     * Ejemplo de llamada: GET /api/v1/productos/batch?ids=1,2,3
+     * @param ids Lista de IDs de productos.
+     * @return ResponseEntity con la lista de productos encontrados.
+     */
+    @GetMapping("/batch")
+    public ResponseEntity<List<ProductoDTO>> obtenerProductosPorIds(@RequestParam List<Long> ids) {
+        List<ProductoDTO> productos = productoService.obtenerProductosPorIds(ids);
+        return ResponseEntity.ok(productos);
+    }
+
     // 2. RETORNA la lista de productos (JSON)
     @GetMapping
     public ResponseEntity<List<ProductoDTO>> listarProductos() {
@@ -67,9 +79,4 @@ public class ProductoController {
         return ResponseEntity.ok(productos);
     }
 
-    // ❌ Lógica eliminada:
-    // - /vendidos
-    // - /vender
-    // - /devolver
-    // - /nuestros-productos (vistas)
 }

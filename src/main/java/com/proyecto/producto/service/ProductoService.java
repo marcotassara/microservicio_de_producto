@@ -25,6 +25,20 @@ public class ProductoService {
         this.webClientCategorias = webClientCategorias;
     }
 
+    /**
+     * Busca una lista de productos a partir de sus IDs.
+     * Ideal para consultas "batch" desde otros microservicios.
+     * @param ids La lista de IDs de productos a buscar.
+     * @return Una lista de ProductoDTO.
+     */
+    public List<ProductoDTO> obtenerProductosPorIds(List<Long> ids) {
+        // No necesitas modificar el ProductoRepository, JpaRepository ya tiene este método.
+        return productoRepository.findAllById(ids).stream()
+                .map(this::convertToDTO) // Asumo que tienes un método para convertir Entidad a DTO
+                .collect(Collectors.toList());
+    }
+
+
     // ================== Llamada al Microservicio Categorías ==================
     private String obtenerNombreCategoria(Long categoriaId) {
         if (categoriaId == null) return "Sin Categoría";
